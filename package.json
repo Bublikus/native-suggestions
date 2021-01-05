@@ -1,0 +1,29 @@
+{
+  "name": "native-suggestions",
+  "version": "1.0.0",
+  "description": "Datalist with native suggestions for text input fields.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Bublikus/native-suggestions.git"
+  },
+  "keywords": [
+    "datalist",
+    "suggestions",
+    "options",
+    "text",
+    "input",
+    "native",
+    "keyboard",
+    "dropdown"
+  ],
+  "author": "Bublikus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bublikus/native-suggestions/issues"
+  },
+  "homepage": "https://github.com/Bublikus/native-suggestions#readme"
+}
