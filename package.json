@@ -1,9 +1,11 @@
 {
-  "name": "native-suggestions",
+  "name": "@bublikus/native-suggestions",
   "version": "1.0.0",
   "description": "Datalist with native suggestions for text input fields.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "start": "webpack serve --open --mode development",
+    "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,5 +27,15 @@
   "bugs": {
     "url": "https://github.com/Bublikus/native-suggestions/issues"
   },
-  "homepage": "https://github.com/Bublikus/native-suggestions#readme"
+  "homepage": "https://github.com/Bublikus/native-suggestions#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^4.5.1",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.1"
+  }
 }
