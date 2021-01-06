@@ -1,34 +1,33 @@
 import storage from './storage'
 
 export default class NativeSuggestions {
-  STORAGE_KEY = 'native-suggestions'
-  INPUT_TYPES = ['text', 'search', 'email', 'tel']
-  SAVE_LENGTH = 10
-  LIST_LENGTH = 10
-
-  get isMobile() {
-    return window.innerWidth <= 768
+  config = {
+    storageKey: 'native-suggestions',
+    folder: 'all',
+    inputKey: null,
+    listLength: 10,
+    saveLength: 10,
+    mobileOnly: true,
+    inputTypes: ['text', 'number', 'search', 'email', 'tel'],
   }
 
-  key = null
-  input = null
   store = null
+  input = null
   datalist = null
 
-  constructor (input, key) {
+  constructor(input, config) {
     if (!(input instanceof HTMLInputElement)) {
       console.warn('Element must be an input.', input)
       return
     }
 
-    if (!this.INPUT_TYPES.includes(input.type)) {
+    if (!this.config.inputTypes.includes(input.type)) {
       return
     }
 
-    this.input = input
-    this.key = key || (input.name && input.name === input.id ? `${input.name}_${input.id}` : input.name)
+    this.init(input, config)
 
-    if (!this.key) {
+    if (!this.config.inputKey) {
       console.warn('An input has no identification attribute. Use "name" for input or provide own "key".', input)
       return
     }
@@ -38,49 +37,72 @@ export default class NativeSuggestions {
     this.updateDatalist()
   }
 
-  get list () {
-    return this.castArray(this.store?.[this.key])
+  get isMobile() {
+    return window.innerWidth <= 768
   }
 
-  get options () {
+  get list() {
+    return this.castArray(this.store?.[this.config.folder]?.[this.config.inputKey])
+  }
+
+  get options() {
     return this.list
-      .slice(0, this.LIST_LENGTH)
+      .slice(0, this.config.listLength)
       .map(value => `<option value="${value}">${value}</option>`)
       .join('')
   }
 
-  retrieveStorage () {
-    const store = storage(this.STORAGE_KEY)
-    this.store = this.isValidStore(store) ? store : {}
+  init(input, config = {}) {
+    this.input = input
+
+    const newConfig = { ...this.config, ...config }
+    newConfig.inputKey = config.inputKey || (input.name && input.name === input.id ? `${input.name}_${input.id}` : input.name)
+    newConfig.folder = config.folder || this.config.folder
+    this.config = newConfig
   }
 
-  onInputChange (e) {
+  retrieveStorage() {
+    const store = storage(this.config.storageKey)
+    this.store = this.isObject(store) ? store : {}
+  }
+
+  onInputChange(e) {
     const value = this.getValueFromEvent(e)
     if (!value) return
+
     this.addValueToStore(value)
     this.updateDatalist()
   }
 
-  updateDatalist () {
-    if (!this.isMobile) return // only for mobile
-    this.input.setAttribute('list', this.key)
+  updateDatalist() {
+    if (this.config.mobileOnly && !this.isMobile) return
+
+    const id = `${this.config.folder}.${this.config.inputKey}`
+
+    this.input.setAttribute('list', id)
     this.input.setAttribute('autocomplete', 'on')
+
     const isDataList = !!this.datalist
     this.datalist = this.datalist || document.createElement('datalist')
-    this.datalist.id = this.key
+    this.datalist.id = id
     !isDataList && this.input.after(this.datalist)
+
     this.datalist.innerHTML = this.options
   }
 
-  addValueToStore (value) {
+  addValueToStore(value) {
     this.retrieveStorage()
+
     const list = this.list.filter(val => val?.trim() !== value?.trim()) // filter same values
     list.unshift(value)
-    this.store[this.key] = list.slice(0, this.SAVE_LENGTH)
-    storage(this.STORAGE_KEY, this.store)
+
+    this.store[this.config.folder] = this.store[this.config.folder] || {}
+    this.store[this.config.folder][this.config.inputKey] = list.slice(0, this.config.saveLength)
+
+    storage(this.config.storageKey, this.store)
   }
 
-  setupListeners () {
+  setupListeners() {
     this.input.addEventListener('change', this.onInputChange.bind(this))
     this.input.addEventListener('DOMNodeRemoved', () => {
       this.input.removeEventListener('change', this.onInputChange.bind(this))
@@ -90,15 +112,15 @@ export default class NativeSuggestions {
     }, false)
   }
 
-  getValueFromEvent (e) {
+  getValueFromEvent(e) {
     return e?.target?.value ?? ''
   }
 
-  castArray (arr) {
+  castArray(arr) {
     return Array.isArray(arr) ? arr : []
   }
 
-  isValidStore (store) {
+  isObject(store) {
     return typeof store === 'object' && !Array.isArray(store) && store !== null
   }
 }
