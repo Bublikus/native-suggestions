@@ -17,6 +17,8 @@ npm i @bublikus/native-suggestions
 Simple registration:
 
 ```javascript 
+import NativeSuggestions from '@bublikus/native-suggestions'
+
 const form = document.getElementById('form')
 const inputs = form.querySelectorAll('input')
 
