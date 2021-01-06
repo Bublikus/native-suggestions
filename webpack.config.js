@@ -2,11 +2,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/index.js', './src/main.js'],
+  entry: {
+    index: './src/index.js',
+    main: './src/main.js',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     publicPath: '/',
+    library: 'nativeSuggestions',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [

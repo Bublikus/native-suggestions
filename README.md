@@ -6,6 +6,14 @@ You can customize native autocomplete suggestions with your own values.
 - For mobile devices suggestions take part of the browser native keyboard.
 - For desktop it expands native autocomplete drop-down.
 
+Safari:
+![Safari IOS screenshot](assets/safari-boxes.png?raw=true "Safari IOS")
+![Safari IOS screenshot](assets/safari-select.png?raw=true "Safari IOS")
+
+Chrome:
+![Chrome IOS screenshot](assets/chrome-boxes.png?raw=true "Chrome IOS")
+![Chrome IOS screenshot](assets/chrome-select.png?raw=true "Chrome IOS")
+
 ### Installing
 
 ```npm
