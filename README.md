@@ -6,13 +6,12 @@ You can customize native autocomplete suggestions with your own values.
 - For mobile devices suggestions take part of the browser native keyboard.
 - For desktop it expands native autocomplete drop-down.
 
-Safari:
-![Safari IOS screenshot](assets/safari-boxes.png?raw=true "Safari IOS")
-![Safari IOS screenshot](assets/safari-select.png?raw=true "Safari IOS")
+Safari and Chrome:
 
-Chrome:
-![Chrome IOS screenshot](assets/chrome-boxes.png?raw=true "Chrome IOS")
-![Chrome IOS screenshot](assets/chrome-select.png?raw=true "Chrome IOS")
+<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/safari-boxes.png" width="200" alt="Safari IOS screenshot" title="Safari IOS"/>
+<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/safari-select.png" width="200" alt="Safari IOS screenshot" title="Safari IOS"/>
+<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/chrome-boxes.png" width="200" alt="Chrome IOS screenshot" title="Chrome IOS"/>
+<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/chrome-select.png" width="200" alt="Chrome IOS screenshot" title="Chrome IOS"/>
 
 ### Installing
 
