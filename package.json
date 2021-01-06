@@ -1,6 +1,6 @@
 {
   "name": "@bublikus/native-suggestions",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Datalist with native suggestions for text input fields.",
   "main": "dist/index.js",
   "scripts": {
