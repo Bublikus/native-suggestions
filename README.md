@@ -49,7 +49,7 @@ new NativeSuggestions(input: HTMLInputElement, config?: Config))
 // Default Config:
 {
     storageKey: 'native-suggestions',
-    folder: 'all',
+    folder: 'other',
     inputKey: null, // Custom or generated from an input name attribute!
     listLength: 10,
     saveLength: 10,
