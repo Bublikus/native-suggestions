@@ -4,7 +4,7 @@
 	let wrapper
 
 	onMount(async () => {
-	  // Use dynamic import because of `self is not defined` issue.
+		// Use dynamic import because of `self is not defined` issue.
 		const { default: NativeSuggestions } = await import('@bublikus/native-suggestions')
 
 		const config = $$props // spread all props to config
