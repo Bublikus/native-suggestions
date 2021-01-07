@@ -8,5 +8,7 @@ function mounted () {
 
   console.log(inputs)
 
+  document.getElementById('btn').addEventListener('click', () => form.remove())
+
   inputs.forEach((input, i) => new NativeSuggestions(input, { folder: i ? null : 'personal' }))
 }

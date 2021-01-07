@@ -1,9 +1,10 @@
 import storage from './storage'
+import ElementObserver from './element-observer'
 
 export default class NativeSuggestions {
   config = {
     storageKey: 'native-suggestions',
-    folder: 'all',
+    folder: 'other',
     inputKey: null,
     listLength: 10,
     saveLength: 10,
@@ -103,13 +104,8 @@ export default class NativeSuggestions {
   }
 
   setupListeners() {
-    this.input.addEventListener('change', this.onInputChange.bind(this))
-    this.input.addEventListener('DOMNodeRemoved', () => {
-      this.input.removeEventListener('change', this.onInputChange.bind(this))
-    }, false)
-    this.input.addEventListener('DOMNodeRemovedFromDocument', () => {
-      this.input.removeEventListener('change', this.onInputChange.bind(this))
-    }, false)
+    const input = new ElementObserver(this.input)
+    input.onChange(this.onInputChange.bind(this))
   }
 
   getValueFromEvent(e) {

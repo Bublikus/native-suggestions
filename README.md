@@ -9,13 +9,13 @@ You can customize native autocomplete suggestions with your own values.
 |Safari keyboard|Safari select|Chrome keyboard|Chrome select|
 |-------------|-------------|-------------|-------------|
 |<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/safari-boxes.png" width="200" alt="Safari IOS screenshot" title="Safari IOS"/>|<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/safari-select.png" width="200" alt="Safari IOS screenshot" title="Safari IOS"/>|<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/chrome-boxes.png" width="200" alt="Chrome IOS screenshot" title="Chrome IOS"/>|<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/chrome-select.png" width="200" alt="Chrome IOS screenshot" title="Chrome IOS"/>|
-
+#
 ### Installing
 
 ```npm
 npm i @bublikus/native-suggestions
 ```
-
+#
 ### Usage
 
 Simple registration:
@@ -40,9 +40,8 @@ Template example:
     <input name="name5" type="number"/>
 </form>
 ```
-
+#
 ### Config
-
 
 ```javascript 
 new NativeSuggestions(input: HTMLInputElement, config?: Config))
@@ -58,7 +57,7 @@ new NativeSuggestions(input: HTMLInputElement, config?: Config))
     inputTypes: ['text', 'number', 'search', 'email', 'tel'],
 }
 ```
-
+#
 ### Behavior
 
 On `change` event it puts an array of your last typed values to the `localStorage` under `[storageKey]` key and `[folder]` subkey specifically tying to an input based on its `name` attribute.
@@ -67,12 +66,13 @@ It creates next structure:
 ```javascript
 {
   [storageKey]: {
-    all: {
-      [inputKey]: ['value 1', 'value 2']
-    },
     [folder]: {
-      [inputKey]: ['value 3']
+      [inputKey]: ['value 1']
+    },
+    other: {
+      [inputKey]: ['value 2', 'value 3']
     }
   }
 }
 ```
+#
