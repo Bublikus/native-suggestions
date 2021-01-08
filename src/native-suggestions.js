@@ -67,12 +67,29 @@ export default class NativeSuggestions {
     this.store = this.isObject(store) ? store : {}
   }
 
+  setupListeners() {
+    const input = new ElementObserver(this.input)
+    input.onChange(this.onInputChange.bind(this))
+  }
+
   onInputChange(e) {
     const value = this.getValueFromEvent(e)
     if (!value) return
 
     this.addValueToStore(value)
     this.updateDatalist()
+  }
+
+  addValueToStore(value) {
+    this.retrieveStorage()
+
+    const list = this.list.filter(val => val?.trim() !== value?.trim()) // filter same values
+    list.unshift(value)
+
+    this.store[this.config.folder] = this.store[this.config.folder] || {}
+    this.store[this.config.folder][this.config.inputKey] = list.slice(0, this.config.saveLength)
+
+    storage(this.config.storageKey, this.store)
   }
 
   updateDatalist() {
@@ -89,23 +106,6 @@ export default class NativeSuggestions {
     !isDataList && this.input.after(this.datalist)
 
     this.datalist.innerHTML = this.options
-  }
-
-  addValueToStore(value) {
-    this.retrieveStorage()
-
-    const list = this.list.filter(val => val?.trim() !== value?.trim()) // filter same values
-    list.unshift(value)
-
-    this.store[this.config.folder] = this.store[this.config.folder] || {}
-    this.store[this.config.folder][this.config.inputKey] = list.slice(0, this.config.saveLength)
-
-    storage(this.config.storageKey, this.store)
-  }
-
-  setupListeners() {
-    const input = new ElementObserver(this.input)
-    input.onChange(this.onInputChange.bind(this))
   }
 
   getValueFromEvent(e) {

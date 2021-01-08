@@ -4,7 +4,7 @@ Datalist with native suggestions for text input fields.
 You can customize native autocomplete suggestions with your own values.
 
 - For mobile devices suggestions take part of the browser native keyboard.
-- For desktop it expands native autocomplete drop-down.
+- For desktop it expands native autocomplete dropdown.
 
 |Safari keyboard|Safari select|Chrome keyboard|Chrome select|
 |-------------|-------------|-------------|-------------|
@@ -24,9 +24,8 @@ How to use:
 [with Vue](examples/NativeSuggestions.vue)  
 [with Svelte](examples/NativeSuggestions.svelte)
 
+<br>
 ...or pure js:
-
-Simple registration
 
 ```javascript 
 import NativeSuggestions from '@bublikus/native-suggestions'
@@ -37,6 +36,7 @@ const inputs = form.querySelectorAll('input')
 inputs.forEach(input => new NativeSuggestions(input))
 ```
 
+<br>
 Template example
 
 ```html
@@ -58,13 +58,24 @@ new NativeSuggestions(input: HTMLInputElement, config?: Config))
 {
     storageKey: 'native-suggestions',
     folder: 'other',
-    inputKey: null, // Custom or generated from an input name attribute!
+    inputKey: null,
     listLength: 10,
     saveLength: 10,
     mobileOnly: true,
     inputTypes: ['text', 'number', 'search', 'email', 'tel'],
 }
 ```
+
+| Prop        | Description                                      |
+|-------------|--------------------------------------------------|
+| storageKey  | General key in `localStorage`
+| folder      | Specific key for a set of inputs
+| inputKey    | Custom or generated from an input name attribute!
+| listLength  | How many suggestions to show in select
+| saveLength  | How many suggestions to save for 1 input
+| mobileOnly  | I want to see only within keyboard (not dropdown)
+| inputTypes  | Allowed types for suggestions
+
 #
 ### Behavior
 
@@ -83,4 +94,6 @@ It creates next structure:
   }
 }
 ```
+
+The benefit of that structure is that you **can define specific** suggestions for an active **organization** or a **user**. 
 #
