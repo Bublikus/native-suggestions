@@ -24,7 +24,6 @@ How to use:
 [with Vue](examples/NativeSuggestions.vue)  
 [with Svelte](examples/NativeSuggestions.svelte)
 
-<br>
 ...or pure js:
 
 ```javascript 
@@ -36,7 +35,6 @@ const inputs = form.querySelectorAll('input')
 inputs.forEach(input => new NativeSuggestions(input))
 ```
 
-<br>
 Template example
 
 ```html
@@ -65,6 +63,7 @@ new NativeSuggestions(input: HTMLInputElement, config?: Config))
     inputTypes: ['text', 'number', 'search', 'email', 'tel'],
 }
 ```
+<br>
 
 | Prop        | Description                                      |
 |-------------|--------------------------------------------------|
