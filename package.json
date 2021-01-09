@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack serve --open --mode development",
     "build": "webpack --mode production",
-    "prepublish": "func() { npm run build && git add . && git commit -m \"$1\" && npm version patch && git push; }; func",
+    "patchPublish": "func() { npm run build && git add . && git commit -m \"$1\" && npm version patch && git push && npm publish; }; func",
+    "minorPublish": "func() { npm run build && git add . && git commit -m \"$1\" && npm version minor && git push && npm publish; }; func",
+    "majorPublish": "func() { npm run build && git add . && git commit -m \"$1\" && npm version major && git push && npm publish; }; func",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
