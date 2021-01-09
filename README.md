@@ -50,7 +50,7 @@ Template example
 ### Config
 
 ```javascript 
-new NativeSuggestions(input: HTMLInputElement, config?: Config))
+new NativeSuggestions(input: HTMLInputElement, config?: Config)
 
 // Default Config:
 {
@@ -60,6 +60,7 @@ new NativeSuggestions(input: HTMLInputElement, config?: Config))
     listLength: 10,
     saveLength: 10,
     mobileOnly: true,
+    addOnInput: true,
     inputTypes: ['text', 'number', 'search', 'email', 'tel'],
 }
 ```
@@ -73,7 +74,28 @@ new NativeSuggestions(input: HTMLInputElement, config?: Config))
 | listLength  | How many suggestions to show in select
 | saveLength  | How many suggestions to save for 1 input
 | mobileOnly  | I want to see only within keyboard (not dropdown)
+| addOnInput  | Turn off if you want to use only your own values
 | inputTypes  | Allowed types for suggestions
+
+#
+### Custom suggestions
+
+Set your custom store **before** input registration
+```javascript
+NativeSuggestions.setStore(values, config?)
+
+// Values:
+{
+    name1: ['value 1'],
+    name2: ['value 2', 'value 3'],
+}
+
+// Default Config:
+{
+    storageKey: 'native-suggestions',
+    folder: 'other',
+}
+```
 
 #
 ### Behavior

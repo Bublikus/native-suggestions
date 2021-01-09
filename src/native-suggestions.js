@@ -1,5 +1,7 @@
 import storage from './storage'
 import ElementObserver from './element-observer'
+import utils from './utils'
+import setStore from './setStore'
 
 export default class NativeSuggestions {
   config = {
@@ -9,6 +11,7 @@ export default class NativeSuggestions {
     listLength: 10,
     saveLength: 10,
     mobileOnly: true,
+    addOnInput: true,
     inputTypes: ['text', 'number', 'search', 'email', 'tel'],
   }
 
@@ -34,16 +37,18 @@ export default class NativeSuggestions {
     }
 
     this.retrieveStorage()
-    this.setupListeners()
+    if (this.config.addOnInput) this.setupListeners()
     this.updateDatalist()
   }
+
+  static setStore = setStore
 
   get isMobile() {
     return window.innerWidth <= 768
   }
 
   get list() {
-    return this.castArray(this.store?.[this.config.folder]?.[this.config.inputKey])
+    return utils.castArray(this.store?.[this.config.folder]?.[this.config.inputKey])
   }
 
   get options() {
@@ -64,7 +69,7 @@ export default class NativeSuggestions {
 
   retrieveStorage() {
     const store = storage(this.config.storageKey)
-    this.store = this.isObject(store) ? store : {}
+    this.store = utils.isObject(store) ? store : {}
   }
 
   setupListeners() {
@@ -73,7 +78,7 @@ export default class NativeSuggestions {
   }
 
   onInputChange(e) {
-    const value = this.getValueFromEvent(e)
+    const value = utils.getValueFromEvent(e)
     if (!value) return
 
     this.addValueToStore(value)
@@ -106,17 +111,5 @@ export default class NativeSuggestions {
     !isDataList && this.input.after(this.datalist)
 
     this.datalist.innerHTML = this.options
-  }
-
-  getValueFromEvent(e) {
-    return e?.target?.value ?? ''
-  }
-
-  castArray(arr) {
-    return Array.isArray(arr) ? arr : []
-  }
-
-  isObject(store) {
-    return typeof store === 'object' && !Array.isArray(store) && store !== null
   }
 }
