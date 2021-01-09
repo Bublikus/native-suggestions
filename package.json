@@ -1,6 +1,6 @@
 {
   "name": "@bublikus/native-suggestions",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Datalist with native suggestions for text input fields.",
   "main": "dist/index.js",
   "files": [
@@ -39,7 +39,7 @@
     "url": "https://github.com/Bublikus/native-suggestions/issues"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "homepage": "https://github.com/Bublikus/native-suggestions#readme",
   "devDependencies": {
