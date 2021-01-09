@@ -38,6 +38,9 @@
   "bugs": {
     "url": "https://github.com/Bublikus/native-suggestions/issues"
   },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
   "homepage": "https://github.com/Bublikus/native-suggestions#readme",
   "devDependencies": {
     "@babel/core": "^7.12.10",
