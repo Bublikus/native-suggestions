@@ -3,6 +3,9 @@
   "version": "1.0.17",
   "description": "Datalist with native suggestions for text input fields.",
   "main": "dist/index.js",
+  "files": [
+    "dist/index.js"
+  ],
   "scripts": {
     "start": "webpack serve --open --mode development",
     "build": "webpack --mode production",
@@ -36,7 +39,7 @@
     "url": "https://github.com/Bublikus/native-suggestions/issues"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com/bublikus"
   },
   "homepage": "https://github.com/Bublikus/native-suggestions#readme",
   "devDependencies": {
