@@ -10,7 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     publicPath: '/',
-    library: 'nativeSuggestions',
+    libraryExport: 'default',
     libraryTarget: 'umd',
   },
   module: {
