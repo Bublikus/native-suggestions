@@ -3,18 +3,19 @@
   "version": "1.0.29",
   "description": "Datalist with native suggestions for text input fields.",
   "main": "dist/index.js",
-  "files": [
-    "dist/index.js"
-  ],
+  "files": ["dist/index.js"],
   "scripts": {
     "start": "webpack serve --open --mode development",
     "build": "webpack --mode production",
-    "patchPublish": "func() { npm run build && git add . && git commit -m \"$1\" && npm version patch && git push && npm publish; }; func",
-    "minorPublish": "func() { npm run build && git add . && git commit -m \"$1\" && npm version minor && git push && npm publish; }; func",
-    "majorPublish": "func() { npm run build && git add . && git commit -m \"$1\" && npm version major && git push && npm publish; }; func",
+    "patchPublish": "func() { npm run build && git add . && git commit -m \"$1\" && npm version patch && npm publish && git push; }; func",
+    "minorPublish": "func() { npm run build && git add . && git commit -m \"$1\" && npm version minor && npm publish && git push; }; func",
+    "majorPublish": "func() { npm run build && git add . && git commit -m \"$1\" && npm version major && npm publish && git push; }; func",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "git://github.com/Bublikus/native-suggestions.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Bublikus/native-suggestions.git"
+  },
   "keywords": [
     "datalist",
     "suggestions",

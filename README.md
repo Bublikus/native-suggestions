@@ -6,8 +6,8 @@ You can customize native autocomplete suggestions with your own values.
 - For mobile devices suggestions take part of the browser native keyboard.
 - For desktop it expands native autocomplete dropdown.
 
-|Safari keyboard|Safari select|Chrome keyboard|Chrome select|
-|-------------|-------------|-------------|-------------|
+| Safari | Safari | Chrome | Chrome |
+|---------------|---------------|---------------|---------------|
 |<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/safari-boxes.png" width="200" alt="Safari IOS screenshot" title="Safari IOS"/>|<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/safari-select.png" width="200" alt="Safari IOS screenshot" title="Safari IOS"/>|<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/chrome-boxes.png" width="200" alt="Chrome IOS screenshot" title="Chrome IOS"/>|<img src="https://raw.githubusercontent.com/Bublikus/native-suggestions/master/assets/chrome-select.png" width="200" alt="Chrome IOS screenshot" title="Chrome IOS"/>|
 #
 ### Installing
@@ -80,7 +80,10 @@ new NativeSuggestions(input: HTMLInputElement, config?: Config)
 #
 ### Custom suggestions
 
-Set your custom store **before** input registration
+You can setup your own suggestions in the storage.
+
+> Turn off `addOnInput` if you don't want to add new values on input.
+
 ```javascript
 NativeSuggestions.setStore(values, config?)
 

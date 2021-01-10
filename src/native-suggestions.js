@@ -75,6 +75,7 @@ export default class NativeSuggestions {
   setupListeners() {
     const input = new ElementObserver(this.input)
     input.onChange(this.onInputChange.bind(this))
+    input.onFocus(this.updateDatalist.bind(this))
   }
 
   onInputChange(e) {
@@ -99,6 +100,8 @@ export default class NativeSuggestions {
 
   updateDatalist() {
     if (this.config.mobileOnly && !this.isMobile) return
+
+    this.retrieveStorage()
 
     const id = `${this.config.folder}.${this.config.inputKey}`
 

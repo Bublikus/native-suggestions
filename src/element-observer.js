@@ -11,6 +11,12 @@ export default class {
     return this
   }
 
+  onFocus(callback) {
+    this.element.addEventListener('focus', callback)
+    this.onRemove(() => this.element.removeEventListener('focus', callback))
+    return this
+  }
+
   onRemove(callback) {
     let observer = new MutationObserver((mutations) => {
       mutations.forEach(mutation => {
