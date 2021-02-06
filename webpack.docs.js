@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'docs'),
     filename: 'main.js',
-    publicPath: '/',
+    publicPath: 'https://bublikus.github.io/native-suggestions/',
   },
   plugins: [
     new HtmlWebpackPlugin({
