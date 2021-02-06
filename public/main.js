@@ -3,8 +3,16 @@ import NativeSuggestions from '../src/index'
 document.addEventListener('DOMContentLoaded', mounted)
 
 function mounted () {
+  const clearBtn = document.getElementById('clear')
   const form = document.getElementById('form')
   const inputs = form.querySelectorAll('input')
+
+  clearBtn.addEventListener('click', () => {
+    localStorage.removeItem('native-suggestions')
+    defineCustomValues()
+  })
+
+  defineCustomValues()
 
   const configs = {
     inp_1: {
@@ -23,6 +31,10 @@ function mounted () {
     }
   }
 
+  inputs.forEach(input => new NativeSuggestions(input, configs[input.name]))
+}
+
+function defineCustomValues () {
   NativeSuggestions.setStore( {
     inp_1: [
       '1st custom value',
@@ -37,6 +49,4 @@ function mounted () {
       'input value'
     ]
   })
-
-  inputs.forEach(input => new NativeSuggestions(input, configs[input.name]))
 }
