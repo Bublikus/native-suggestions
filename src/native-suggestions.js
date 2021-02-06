@@ -19,6 +19,19 @@ export default class NativeSuggestions {
   input = null
   datalist = null
 
+  /**
+   *
+   * @param {HTMLInputElement} input
+   * @param {{
+   *   storageKey: string,
+   *   folder: string,
+   *   inputKey: string,
+   *   listLength: number,
+   *   saveLength: number,
+   *   mobileOnly: boolean,
+   *   addOnInput: boolean,
+   * }} config
+   */
   constructor(input, config) {
     if (!(input instanceof HTMLInputElement)) {
       console.warn('Element must be an input.', input)

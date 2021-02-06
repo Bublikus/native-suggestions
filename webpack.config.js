@@ -1,18 +1,8 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const docsConfig = require('./webpack.docs')
+const distConfig = require('./webpack.dist')
 
-module.exports = {
-  entry: {
-    index: './src/index.js',
-    main: './src/main.js',
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: '/',
-    libraryExport: 'default',
-    libraryTarget: 'umd',
-  },
+const base = {
   module: {
     rules: [
       {
@@ -35,25 +25,31 @@ module.exports = {
           }
         }
       },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+          }
+        ]
+      }
     ],
   },
   resolve: {
     modules: ['node_modules', path.resolve(__dirname, 'src')],
     extensions: ['.js', '.json', '.css'],
-    alias: {
-      '@src': path.resolve(__dirname, 'src'),
-    },
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html')
-    })
-  ],
-  context: __dirname,
   target: 'web',
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    historyApiFallback: true,
-    hot: true,
-  },
 }
+
+const dist = {
+  ...base,
+  ...distConfig
+}
+
+const docs = {
+  ...base,
+  ...docsConfig,
+}
+
+module.exports = process.env.TYPE === 'build_docs' ? docs : [docs, dist]
